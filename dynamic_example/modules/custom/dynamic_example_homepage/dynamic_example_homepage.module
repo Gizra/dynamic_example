@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Dynamic example homepage feature.
+ */
+
+include_once 'dynamic_example_homepage.features.inc';

@@ -52,3 +52,4 @@ dependencies[] = dynamic_example_company
 dependencies[] = dynamic_example_event
 dependencies[] = dynamic_example_file
 dependencies[] = dynamic_example_restful
+dependencies[] = dynamic_example_homepage
