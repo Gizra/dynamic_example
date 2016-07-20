@@ -57,6 +57,29 @@ function dynamic_example_homepage_default_page_manager_pages() {
   $display->uuid = 'da14a079-4a46-47c8-8459-8ad568cdbd7c';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-8aace52d-3010-49b0-a2bb-4a948d081993';
+    $pane->panel = 'middle';
+    $pane->type = 'companies';
+    $pane->subtype = 'companies';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8aace52d-3010-49b0-a2bb-4a948d081993';
+    $display->content['new-8aace52d-3010-49b0-a2bb-4a948d081993'] = $pane;
+    $display->panels['middle'][0] = 'new-8aace52d-3010-49b0-a2bb-4a948d081993';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
