@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DynamicExample Event feature.
+ */
+
+include_once 'dynamic_example_event.features.inc';

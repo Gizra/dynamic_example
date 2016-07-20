@@ -1,0 +1,10 @@
+{
+  "name": "Behat tests for DynamicExample",
+  "description": "Functional testing for DynamicExample installation profile.",
+  "require": {
+    "drupal/drupal-extension": "~3.0"
+  },
+  "config": {
+    "bin-dir": "bin/"
+  }
+}

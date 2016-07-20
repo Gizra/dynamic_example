@@ -1,0 +1,63 @@
+language: php
+
+env:
+  # Creating 3 different environments:
+  #  1. Testing the project itself including behat.
+  #  2. Reviewing the code by the Drupal standards.
+  #  3. Reviewing the code by the Drupal best practices.
+  - INSTALL_PROJECT=1
+    CODE_REVIEW=0
+  - INSTALL_PROJECT=0
+    CODE_REVIEW=1
+    REVIEW_STANDARD="Drupal"
+  - INSTALL_PROJECT=0
+    CODE_REVIEW=1
+    REVIEW_STANDARD="DrupalPractice"
+
+php:
+  - 5.5
+
+mysql:
+  database: drupal
+  username: root
+  encoding: utf8
+
+before_install:
+  - sudo apt-get update > /dev/null
+  - composer self-update
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+  # Install dependencies.
+  - $TRAVIS_BUILD_DIR/scripts/travis/install_dependencies.sh
+
+install:
+  # install drush
+  - $TRAVIS_BUILD_DIR/scripts/travis/install_drush.sh
+
+  # Install Behat
+  - $TRAVIS_BUILD_DIR/scripts/travis/install_behat.sh
+
+  # Install Drupal
+  - $TRAVIS_BUILD_DIR/scripts/travis/install_profile.sh
+
+  # Install client
+  - $TRAVIS_BUILD_DIR/scripts/travis/install_client.sh
+
+before_script:
+  # Run the web server.
+  - $TRAVIS_BUILD_DIR/scripts/travis/run_web_server.sh
+
+  # Run the client server.
+  - $TRAVIS_BUILD_DIR/scripts/travis/run_client_server.sh
+
+script:
+  # Run behat tests.
+  - $TRAVIS_BUILD_DIR/scripts/travis/run_behat.sh
+
+  # Run Code Style validation.
+  - $TRAVIS_BUILD_DIR/ci/bin/run_coder.sh
+
+after_script:
+  # Print logs.
+  - cat ~/grunt.log
+  - cat ~/phantomjs.log

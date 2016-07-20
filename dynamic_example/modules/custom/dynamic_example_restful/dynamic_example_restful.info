@@ -1,0 +1,9 @@
+name = DynamicExample RESTFul
+core = 7.x
+package = DynamicExample
+dependencies[] = restful
+dependencies[] = entity_validator
+
+dependencies[] = dynamic_example_company
+
+files[] = plugins/restful/node/DynamicExampleEntityBaseNode.php

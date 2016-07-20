@@ -1,0 +1,9 @@
+<?php
+/**
+ * @file
+ * Code for the DynamicExample Company feature.
+ */
+
+include_once 'dynamic_example_company.features.inc';
+
+

@@ -1,0 +1,15 @@
+name = "DynamicExample migration"
+description = "Populate content."
+package = "DynamicExample"
+core = 7.x
+dependencies[] = migrate
+dependencies[] = migrate_extras
+
+; Handlers
+files[] = handlers/DynamicExampleMigrateBase.php
+
+files[] = handlers/node/DynamicExampleCompaniesMigrate.php
+files[] = handlers/node/DynamicExampleEventsMigrate.php
+
+files[] = handlers/user/DynamicExampleUsersMigrate.php
+
