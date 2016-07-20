@@ -1,0 +1,11 @@
+
+name = Dynamic example
+description = Custom theme
+core = 7.x
+
+stylesheets[all][] = 'semantic.min.css'
+stylesheets[all][] = 'assets/stylesheets/style.css'
+
+; Vendor JS
+scripts[] = 'assets/javascript/jquery-2.2.3.min.js'
+scripts[] = 'assets/javascript/script.js'
