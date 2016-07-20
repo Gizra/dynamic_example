@@ -38,7 +38,7 @@ projects[facetapi][subdir] = "contrib"
 projects[facetapi][version] = "1.5"
 
 projects[features][subdir] = "contrib"
-projects[features][version] = "2.7"
+projects[features][version] = "2.10"
 
 projects[flag][subdir] = "contrib"
 projects[flag][version] = "3.7"
@@ -56,7 +56,7 @@ projects[mailsystem][version] = 2.34
 projects[mailsystem][subdir] = "contrib"
 
 projects[message][subdir] = "contrib"
-projects[message][version] = "1.11"
+projects[message][version] = "1.12"
 
 projects[message_notify][subdir] = "contrib"
 projects[message_notify][version] = "2.5"
@@ -92,7 +92,7 @@ projects[token][subdir] = "contrib"
 projects[token][version] = "1.6"
 
 projects[views][subdir] = "contrib"
-projects[views][version] = "3.13"
+projects[views][version] = "3.14"
 
 projects[views_bulk_operations][subdir] = "contrib"
 projects[views_bulk_operations][version] = "3.3"
