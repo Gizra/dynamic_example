@@ -51,7 +51,7 @@ function dynamic_example_homepage_cards_content_type_render($subtype, $conf, $ar
       'image' => $image,
       'title' => check_plain($node->title),
       'comment' => $comment,
-      'time_ago' => format_interval($node->created)
+      'time_ago' => format_interval(time() - $node->created),
     );
 
     $cards_item[] = theme('dynamic_example_homepage_cards_item', $variables);
