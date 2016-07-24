@@ -57,6 +57,29 @@ function dynamic_example_lesson_default_page_manager_pages() {
   $display->uuid = 'fd2e581c-a87c-45ab-a1ea-ecbe1f0fbebf';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-884613ce-d257-4b54-9b65-9e5cbaa2a388';
+    $pane->panel = 'middle';
+    $pane->type = 'companies_list';
+    $pane->subtype = 'companies_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '884613ce-d257-4b54-9b65-9e5cbaa2a388';
+    $display->content['new-884613ce-d257-4b54-9b65-9e5cbaa2a388'] = $pane;
+    $display->panels['middle'][0] = 'new-884613ce-d257-4b54-9b65-9e5cbaa2a388';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
