@@ -8,7 +8,7 @@
 
 <div class="ui card">
   <div class="content">
-    <div class="right floated meta">14h</div>
+    <div class="right floated meta"><?php print $time_ago; ?></div>
     <img class="ui avatar image" src="<?php print $image; ?>"><?php print $title; ?>
   </div>
   <div class="image">
