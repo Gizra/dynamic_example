@@ -45,13 +45,7 @@ function dynamic_example_homepage_cards_content_type_render($subtype, $conf, $ar
     $image = $wrapper->field_company_logo->value();
 
     $image = file_create_url($image['uri']);
-
-    if ($node->comment_count == 0) {
-    $comment = t('No comments');
-    }
-    else {
-      $comment = format_plural($node->comment_count, '1 comment', '@count comments');
-    }
+    $comment = $node->comment_count ? format_plural($node->comment_count, '1 comment', '@count comments') : t('No comments');
 
     $variables = array(
       'image' => $image,
@@ -63,10 +57,8 @@ function dynamic_example_homepage_cards_content_type_render($subtype, $conf, $ar
     $cards_item[] = theme('dynamic_example_homepage_cards_item', $variables);
   }
 
-
   $variables = array(
     'cards_item' => $cards_item,
-
   );
 
   $block->content = theme('dynamic_example_homepage_cards', $variables);
