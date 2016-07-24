@@ -20,7 +20,7 @@
         17 likes
       </span>
     <i class="comment icon"></i>
-    3 comments
+    <?php print $comment; ?>
   </div>
   <div class="extra content">
     <div class="ui large transparent left icon input">
