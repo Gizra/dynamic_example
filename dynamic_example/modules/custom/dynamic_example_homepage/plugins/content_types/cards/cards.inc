@@ -34,27 +34,31 @@ function dynamic_example_homepage_cards_content_type_render($subtype, $conf, $ar
     return;
   }
 
-  $cards = array();
+  // Holds the cards Html.
+  $cards_item = array();
 
   $nids = array_keys($result['node']);
+
   foreach (node_load_multiple($nids) as $node) {
 
     $wrapper = entity_metadata_wrapper('node', $node);
     $image = $wrapper->field_company_logo->value();
 
     $image = file_create_url($image['uri']);
+    $comment = $node->comment_count ? format_plural($node->comment_count, '1 comment', '@count comments') : t('No comments');
 
     $variables = array(
       'image' => $image,
       'title' => check_plain($node->title),
-      'link' => url('node/' . $node->nid),
+      'comment' => $comment,
+      'time_ago' => format_interval(time() - $node->created),
     );
 
-    $cards[] = theme('dynamic_example_homepage_cards_item', $variables);
+    $cards_item[] = theme('dynamic_example_homepage_cards_item', $variables);
   }
 
   $variables = array(
-    'cards' => $cards,
+    'cards_item' => $cards_item,
   );
 
   $block->content = theme('dynamic_example_homepage_cards', $variables);
@@ -74,7 +78,7 @@ function dynamic_example_homepage_cards_content_type_edit_form($form, &$form_sta
 function dynamic_example_homepage_cards_content_type_theme(&$theme, $plugin) {
   $theme['dynamic_example_homepage_cards'] = array(
     'variables' => array(
-      'cards' => NULL,
+      'cards_item' => NULL,
     ),
     'path' => $plugin['path'],
     'template' => 'cards',
@@ -84,7 +88,8 @@ function dynamic_example_homepage_cards_content_type_theme(&$theme, $plugin) {
     'variables' => array(
       'image' => NULL,
       'title' => NULL,
-      'link' => NULL,
+      'comment' => NULL,
+      'time_ago' => NULL,
     ),
     'path' => $plugin['path'],
     'template' => 'cards_item',

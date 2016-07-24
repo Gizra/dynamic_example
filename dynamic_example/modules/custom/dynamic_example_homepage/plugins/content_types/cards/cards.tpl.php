@@ -2,18 +2,16 @@
 
 /**
  * @file
- * Companies.
+ * Cards.
  */
 ?>
 
-<div class="ui segment stacked">
-  <div class="ui very relaxed items">
+<div class="ui link cards">
 
     <?php
-      foreach ($cards as $card) {
+      foreach ($cards_item as $card) {
         print $card;
       }
     ?>
 
   </div>
-</div>
