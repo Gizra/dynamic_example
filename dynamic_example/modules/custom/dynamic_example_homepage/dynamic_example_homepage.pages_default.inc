@@ -58,6 +58,29 @@ function dynamic_example_homepage_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-47063f45-2951-40a0-a471-ce494eae03b2';
+    $pane->panel = 'middle';
+    $pane->type = 'cards';
+    $pane->subtype = 'cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '47063f45-2951-40a0-a471-ce494eae03b2';
+    $display->content['new-47063f45-2951-40a0-a471-ce494eae03b2'] = $pane;
+    $display->panels['middle'][0] = 'new-47063f45-2951-40a0-a471-ce494eae03b2';
+    $pane = new stdClass();
     $pane->pid = 'new-8aace52d-3010-49b0-a2bb-4a948d081993';
     $pane->panel = 'middle';
     $pane->type = 'companies';
@@ -75,11 +98,11 @@ function dynamic_example_homepage_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '8aace52d-3010-49b0-a2bb-4a948d081993';
     $display->content['new-8aace52d-3010-49b0-a2bb-4a948d081993'] = $pane;
-    $display->panels['middle'][0] = 'new-8aace52d-3010-49b0-a2bb-4a948d081993';
+    $display->panels['middle'][1] = 'new-8aace52d-3010-49b0-a2bb-4a948d081993';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
