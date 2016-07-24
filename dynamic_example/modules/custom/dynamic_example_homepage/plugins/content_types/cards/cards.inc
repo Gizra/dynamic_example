@@ -46,10 +46,12 @@ function dynamic_example_homepage_cards_content_type_render($subtype, $conf, $ar
 
     $image = file_create_url($image['uri']);
 
-    $comment = format_plural($node->comment_count, '1 comment', '@count comments');
-    //if (comment_count == 0) {
-    //return $comment = 'No comments';
-    //}
+    if ($node->comment_count == 0) {
+    $comment = t('No comments');
+    }
+    else {
+      $comment = format_plural($node->comment_count, '1 comment', '@count comments');
+    }
 
     $variables = array(
       'image' => $image,
