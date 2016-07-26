@@ -9,6 +9,7 @@ $plugin = array(
   'title' => t('Company card'),
   'description' => t('Show a company node as card.'),
   'category' => t('Gizra'),
+  'required context' => new ctools_context_required(t('Company node'), 'node'),
   'hook theme' => 'dynamic_example_lesson_company_card_content_type_theme',
 );
 
@@ -20,7 +21,18 @@ function dynamic_example_lesson_company_card_content_type_render($subtype, $conf
   $block->module = 'dynamic_example_lesson';
   $block->title = '';
 
-  $block->content = 'HELLO';
+  if (empty($context->data)) {
+    return;
+  }
+
+  $node = $context->data;
+
+  if ($node->type != 'company') {
+    throw new Exception('Node context must be a company.');
+  }
+
+
+  $block->content = check_plain($node->title);
   return $block;
 }
 
