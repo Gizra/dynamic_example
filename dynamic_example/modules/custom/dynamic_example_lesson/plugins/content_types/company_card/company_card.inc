@@ -31,10 +31,46 @@ function dynamic_example_lesson_company_card_content_type_render($subtype, $conf
     throw new Exception('Node context must be a company.');
   }
 
+  // Holds the cards Html.
+  $cards = array();
 
-  $block->content = check_plain($node->title);
+  $nids = array_keys($result['node']);
+
+  foreach (node_load_multiple($nids) as $node) {
+
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $image = $wrapper->field_company_logo->value();
+
+    $image = file_create_url($image['uri']);
+
+    if ($node->comment_count == 0) {
+      $comment = t('No comments');
+    }
+    else {
+      $comment = format_plural($node->comment_count, '1 comment', '@count comments');
+    }
+
+    $variables = array(
+        'image' => $image,
+        'title' => check_plain($node->title),
+        'comment' => $comment,
+
+    );
+
+    $cards[] = theme('dynamic_example_lesson_company_card', $variables);
+  }
+
+
+  $variables = array(
+      'cards' => $cards,
+
+  );
+
+  $block->content = theme('dynamic_example_lesson_company_card', $variables);
   return $block;
 }
+
+
 
 /**
  * Edit form.
@@ -49,6 +85,7 @@ function dynamic_example_lesson_company_card_content_type_edit_form($form, &$for
 function dynamic_example_lesson_company_card_content_type_theme(&$theme, $plugin) {
   $theme['dynamic_example_lesson_company_card'] = array(
     'variables' => array(
+      'company_card' => NULL,
     ),
     'path' => $plugin['path'],
     'template' => 'company_card',
