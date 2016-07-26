@@ -59,6 +59,30 @@ function dynamic_example_lesson_default_page_manager_handlers() {
   $display->uuid = '315de118-53a8-44ae-9050-66d3cf8f57b3';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-752961a4-ddd2-4410-a9a2-f421ae319862';
+    $pane->panel = 'middle';
+    $pane->type = 'company_card';
+    $pane->subtype = 'company_card';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '752961a4-ddd2-4410-a9a2-f421ae319862';
+    $display->content['new-752961a4-ddd2-4410-a9a2-f421ae319862'] = $pane;
+    $display->panels['middle'][0] = 'new-752961a4-ddd2-4410-a9a2-f421ae319862';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
