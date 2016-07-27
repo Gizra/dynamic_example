@@ -20,7 +20,21 @@ function dynamic_example_lesson2_companies_list_content_type_render($subtype, $c
   $block->module = 'dynamic_example_lesson2';
   $block->title = '';
 
+  $companies_list_item = array();
 
+  $nodes = array();
+
+    foreach ($nodes as $node) {
+      $variables = array(
+        'title' => check_plain($node->title),
+        'url' => url('node/' . $node->nid),
+        'image' => 'http://placehold.it/150x150',
+      );
+
+      $companies_list_item[] = theme('dynamic_example_lessons2_companies_list_item', $variables);
+    }
+
+dpm($companies_list_item);
 
   $block->content = theme('dynamic_example_lesson2_companies_list');
   return $block;
@@ -39,7 +53,7 @@ function dynamic_example_lesson2_companies_list_content_type_edit_form($form, &$
 function dynamic_example_lesson2_companies_list_content_type_theme(&$theme, $plugin) {
   $theme['dynamic_example_lesson2_companies_list'] = array(
     'variables' => array(
-      'companies_list_item' => NULL,  
+      'companies_list_item' => NULL,
     ),
     'path' => $plugin['path'],
     'template' => 'companies_list',
