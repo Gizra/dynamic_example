@@ -1,9 +1,0 @@
-name = Dynamic example lesson
-core = 7.x
-package = Features
-dependencies[] = ctools
-dependencies[] = page_manager
-features[ctools][] = page_manager:pages_default:1
-features[features_api][] = api:2
-features[page_manager_handlers][] = node_view__panel_context_bc6571b3-29bd-4986-9173-bef385ef5e2a
-features[page_manager_pages][] = homepage
