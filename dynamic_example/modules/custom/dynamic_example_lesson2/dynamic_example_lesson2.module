@@ -5,3 +5,12 @@
  */
 
 include_once 'dynamic_example_lesson2.features.inc';
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function dynamic_example_lesson2_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
+}
