@@ -22,7 +22,7 @@ function dynamic_example_lesson2_companies_list_content_type_render($subtype, $c
 
 
 
-  $block->content = 'Hello world';
+  $block->content = theme('dynamic_example_lesson2_companies_list');
   return $block;
 }
 
@@ -39,9 +39,21 @@ function dynamic_example_lesson2_companies_list_content_type_edit_form($form, &$
 function dynamic_example_lesson2_companies_list_content_type_theme(&$theme, $plugin) {
   $theme['dynamic_example_lesson2_companies_list'] = array(
     'variables' => array(
+      'companies_list_item' => NULL,  
     ),
     'path' => $plugin['path'],
     'template' => 'companies_list',
   );
+
+  $theme['dynamic_example_lesson2_companies_list_item'] = array(
+    'variables' => array(
+      'title' => NULL,
+      'url' => NULL,
+      'image' => NULL,
+    ),
+    'path' => $plugin['path'],
+    'template' => 'companies_list_item',
+  );
+
 
 }
