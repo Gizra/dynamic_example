@@ -24,17 +24,34 @@ function dynamic_example_lesson2_companies_list_content_type_render($subtype, $c
 
   $nodes = array();
 
-    foreach ($nodes as $node) {
-      $variables = array(
-        'title' => check_plain($node->title),
-        'url' => url('node/' . $node->nid),
-        'image' => 'http://placehold.it/150x150',
-      );
+  $query = new EntityFieldQuery();
+   $result = $query
+     ->entityCondition('entity_type', 'node')
+     ->entityCondition('bundle', 'company')
+     ->propertyCondition('status', NODE_PUBLISHED)
+     ->propertyOrderBy('nid', 'DESC')
+     ->range(0, 5)
+     ->execute();
 
-      $companies_list_item[] = theme('dynamic_example_lessons2_companies_list_item', $variables);
+   if (empty($result['node'])) {
+     // No companies.
+     return;
+   }
+
+   $nids = array_keys($result['node']);
+   $nodes = node_load_multiple($nids);
+
+   foreach ($nodes as $node) {
+    $variables = array(
+      'title' => check_plain($node->title),
+      'url' => url('node/' . $node->nid),
+      'image' => 'http://placehold.it/150x150',
+    );
+
+    $companies_list_item[] = theme('dynamic_example_lessons2_companies_list_item', $variables);
     }
 
-dpm($companies_list_item);
+  dpm($companies_list_item);
 
   $block->content = theme('dynamic_example_lesson2_companies_list');
   return $block;

@@ -11,6 +11,6 @@
     <img src="http://placehold.it/150x150">
   </div>
   <div class="middle aligned content">
-    <a class="header">12 Years a Slave</a>
+    <a class="header"><?php print $title ?></a>
   </div>
 </div>
