@@ -12,36 +12,6 @@ $plugin = array(
     'hook theme' => 'dynamic_example_training_companies_list_content_type_theme',
 );
 
-$companies_list_item = array();
-
-$nodes = array();
-
-$query = new EntityFieldQuery();
-$result = $query
-    ->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'company')
-    ->propertyCondition('status', NODE_PUBLISHED)
-    ->propertyOrderBy('nid', 'DESC')
-    ->range(0, 5)
-    ->execute();
-
-if (empty($result['node'])) {
-    // No companies.
-    return;
-}
-
-$nids = array_keys($result['node']);
-$nodes = node_load_multiple($nids);
-
-foreach ($nodes as $node) {
-    $variables = array(
-        'title' => check_plain($node->title),
-        'url' => url('node/' . $node->nid),
-        'image' => 'http://placehold.it/150x150',
-    );
-
-    $companies_list_item[] = theme('dynamic_example_training_companies_list_item', $variables);
-}
 
 /**
  * Render callback.
@@ -51,8 +21,42 @@ function dynamic_example_training_companies_list_content_type_render($subtype, $
     $block->module = 'dynamic_example_training';
     $block->title = '';
 
+    $companies_list_item = array();
 
-    $block->content = theme('dynamic_example_training_companies_list');
+    $nodes = array();
+
+    $query = new EntityFieldQuery();
+    $result = $query
+        ->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'company')
+        ->propertyCondition('status', NODE_PUBLISHED)
+        ->propertyOrderBy('nid', 'DESC')
+        ->range(0, 5)
+        ->execute();
+
+    if (empty($result['node'])) {
+        // No companies.
+        return;
+    }
+
+    $nids = array_keys($result['node']);
+    $nodes = node_load_multiple($nids);
+
+    foreach ($nodes as $node) {
+        $variables = array(
+            'title' => check_plain($node->title),
+            'url' => url('node/' . $node->nid),
+            'image' => 'http://placehold.it/150x150',
+        );
+
+        $companies_list_item[] = theme('dynamic_example_training_companies_list_item', $variables);
+    }
+
+    $variables = array(
+        'companies_list_item' => $companies_list_item,
+    );
+
+    $block->content = theme('dynamic_example_training_companies_list', $variables);
     return $block;
 }
 

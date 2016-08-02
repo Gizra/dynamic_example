@@ -1,8 +1,8 @@
 <div class="item">
     <div class="ui tiny image">
-        <img src="http://placehold.it/150x150">
+        <img src="<?php print $image; ?>">
     </div>
     <div class="middle aligned content">
-        <a class="header">12 Years a Slave</a>
+        <a href="<?php print $url; ?>" class="header"><?php print $title; ?></a>
     </div>
 </div>

@@ -1,10 +1,10 @@
 <div class="ui segment stacked">
     <div class="ui very relaxed items">
 
-        {% include single_item.html %}
-        {% include single_item.html %}
-        {% include single_item.html %}
-
+        <?php foreach ($companies_list_item as $item) {
+            print $item;
+        }
+        ?>
 
     </div>
 </div>
