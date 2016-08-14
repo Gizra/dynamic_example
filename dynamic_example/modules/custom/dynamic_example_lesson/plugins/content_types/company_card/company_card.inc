@@ -38,7 +38,6 @@ function dynamic_example_lesson_company_card_content_type_render($subtype, $conf
   $cards_item = array();
   $nids = array_keys($result['node']);
 
-
   foreach (node_load_multiple($nids) as $node) {
 
     $wrapper = entity_metadata_wrapper('node', $node);
@@ -54,10 +53,10 @@ function dynamic_example_lesson_company_card_content_type_render($subtype, $conf
     }
 
     $variables = array(
-        'image' => $image,
-        'title' => check_plain($node->title),
-        'comment' => $comment,
-        'time_ago' => format_interval(time() - $node->created),
+      'image' => $image,
+      'title' => check_plain($node->title),
+      'comment' => $comment,
+      'time_ago' => format_interval(time() - $node->created),
     );
 
     $cards_item[] = theme('dynamic_example_lesson_cards_item', $variables);
