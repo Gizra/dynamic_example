@@ -7,9 +7,8 @@
 
 $plugin = array(
   'title' => t('Company card'),
-  'description' => t('Show a company node as card.'),
+  'description' => t('Show list of company cards.'),
   'category' => t('Gizra'),
-  'required context' => new ctools_context_required(t('Company node'), 'node'),
   'hook theme' => 'dynamic_example_lesson_company_card_content_type_theme',
 );
 
@@ -21,20 +20,24 @@ function dynamic_example_lesson_company_card_content_type_render($subtype, $conf
   $block->module = 'dynamic_example_lesson';
   $block->title = '';
 
-  if (empty($context->data)) {
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'company')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->propertyOrderBy('nid', 'DESC')
+    ->range(0, 3)
+    ->execute();
+
+  if (empty($result['node'])) {
     return;
   }
 
-  $node = $context->data;
-
-  if ($node->type != 'company') {
-    throw new Exception('Node context must be a company.');
-  }
-
   // Holds the cards Html.
-  $cards = array();
 
+  $cards_item = array();
   $nids = array_keys($result['node']);
+
 
   foreach (node_load_multiple($nids) as $node) {
 
@@ -54,16 +57,15 @@ function dynamic_example_lesson_company_card_content_type_render($subtype, $conf
         'image' => $image,
         'title' => check_plain($node->title),
         'comment' => $comment,
-
+        'time_ago' => format_interval(time() - $node->created),
     );
 
-    $cards[] = theme('dynamic_example_lesson_company_card', $variables);
+    $cards_item[] = theme('dynamic_example_lesson_cards_item', $variables);
+
   }
 
-
   $variables = array(
-      'cards' => $cards,
-
+    'cards_item' => $cards_item,
   );
 
   $block->content = theme('dynamic_example_lesson_company_card', $variables);
@@ -85,10 +87,22 @@ function dynamic_example_lesson_company_card_content_type_edit_form($form, &$for
 function dynamic_example_lesson_company_card_content_type_theme(&$theme, $plugin) {
   $theme['dynamic_example_lesson_company_card'] = array(
     'variables' => array(
-      'company_card' => NULL,
+      'cards_item' => NULL,
     ),
     'path' => $plugin['path'],
     'template' => 'company_card',
   );
+
+  $theme['dynamic_example_lesson_cards_item'] = array(
+    'variables' => array(
+      'image' => NULL,
+      'title' => NULL,
+      'comment' => NULL,
+      'time_ago' => NULL,
+    ),
+    'path' => $plugin['path'],
+    'template' => 'company_card_item',
+  );
+
 
 }
