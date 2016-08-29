@@ -64,9 +64,9 @@ function dynamic_example_lesson_company_card_node_content_type_theme(&$theme, $p
   $theme['dynamic_example_lesson_company_card_node'] = array(
     'variables' => array(
       'title' => NULL,
-      'comment' => NULL,
+      'image' => NULL,
       'time_ago' => NULL,
-
+      'comment' => NULL,
     ),
     'path' => $plugin['path'],
     'template' => 'company_card_node',
