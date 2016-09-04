@@ -74,21 +74,21 @@
 ?>
 
 <header class="ui container header">
-    <h2 class="ui header">
-        <a href="/"><i class="home icon"></i></a>
-        <a href="/">Brand</a>
-    </h2>
+  <h2 class="ui header">
+    <a href="/"><i class="home icon"></i></a>
+    <a href="/">Brand</a>
+  </h2>
 </header>
 
 <?php print $messages; ?>
 
 <main class="ui container">
-    <?php print render($page['content']); ?>
+  <?php print render($page['content']); ?>
 </main>
 
 
 <footer class="ui inverted vertical footer segment">
-    <div class="ui container">
-        Copyright ...
-    </div>
+  <div class="ui container">
+    Copyright ...
+  </div>
 </footer>
