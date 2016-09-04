@@ -86,7 +86,6 @@
   <?php print render($page['content']); ?>
 </main>
 
-
 <footer class="ui inverted vertical footer segment">
   <div class="ui container">
     Copyright ...
