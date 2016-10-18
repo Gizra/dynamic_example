@@ -1,0 +1,24 @@
+<?php
+/**
+ * @file
+ * Code for the DynamicExample Message feature.
+ */
+
+include_once 'dynamic_example_message.features.inc';
+
+/**
+ * Implements hook_comment_insert().
+ */
+function dynamic_example_message_comment_insert($comment) {
+  // Load the node by the nid of the comment.
+  $node = node_load($comment->nid);
+
+  // Create the message.
+  $message = message_create('dynamic_example_insert_comment');
+
+  // Set the entity references to the comment and the node.
+  $wrapper = entity_metadata_wrapper('message', $message);
+  $wrapper->field_node_ref->set($node);
+  $wrapper->field_comment_ref->set($comment);
+  $wrapper->save();
+}
