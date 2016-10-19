@@ -14,6 +14,13 @@ function dynamic_example_message_ctools_plugin_api($module = NULL, $api = NULL) 
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function dynamic_example_message_views_api($module = NULL, $api = NULL) {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_default_message_type().
  */
 function dynamic_example_message_default_message_type() {
